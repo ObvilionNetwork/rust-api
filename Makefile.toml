@@ -1,0 +1,18 @@
+[tasks.test]
+command = "cargo"
+args = ["test"]
+
+[tasks.lint]
+command = "cargo"
+args = ["clippy"]
+
+[tasks.check]
+command = "cargo"
+args = ["check"]
+
+[tasks.flow]
+dependencies = [
+    "check",
+    "test",
+    "lint"
+]

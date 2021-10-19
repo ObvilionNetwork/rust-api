@@ -1,0 +1,38 @@
+name: Develop build
+
+on:
+  push:
+    branches:
+      - 'develop'
+  pull_request:
+    branches:
+      - 'develop'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: -vv
+      - uses: actions/upload-artifact@v2
+        with:
+          name: api-windows
+          path: ./target/debug/rust-api.exe
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: -vv
+      - name: Archive linux binary
+        run: |
+          tar czvf ./target/debug/rust-api.tar.gz ./target/debug/rust-api
+      - uses: actions/upload-artifact@v2
+        with:
+          name: api-linux
+          path: ./target/debug/rust-api.tar.gz

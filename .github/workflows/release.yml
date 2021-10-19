@@ -1,0 +1,35 @@
+name: Release build
+
+on:
+  push:
+    branches:
+      - 'release'
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release -vv
+      - uses: actions/upload-artifact@v2
+        with:
+          name: api-windows
+          path: ./target/release/rust-api.exe
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release -vv
+      - name: Archive linux binary
+        run: |
+          tar czvf ./target/release/rust-api.tar.gz ./target/release/rust-api
+      - uses: actions/upload-artifact@v2
+        with:
+          name: api-linux
+          path: ./target/release/rust-api.tar.gz
