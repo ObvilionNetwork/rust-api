@@ -6,19 +6,7 @@ on:
       - 'release'
 
 jobs:
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - name: Build
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --release -vv
-      - uses: actions/upload-artifact@v2
-        with:
-          name: api-windows
-          path: ./target/release/rust-api.exe
-  build-linux:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Build

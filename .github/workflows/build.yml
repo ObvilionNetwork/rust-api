@@ -9,21 +9,12 @@ on:
       - 'develop'
 
 jobs:
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - name: Build
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: -vv
-      - uses: actions/upload-artifact@v2
-        with:
-          name: api-windows
-          path: ./target/debug/rust-api.exe
-  build-linux:
+  build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check directories
+        run: |
+          ls .. -r
       - name: Build
         uses: actions-rs/cargo@v1
         with:
