@@ -1,7 +1,7 @@
 [package]
 name = "rust-api"
 version = "3.0.0"
-edition = "2018"
+edition = "2021"
 authors = ["Shift <shiftkeydeveloper@gmail.com>"]
 description = "Obvilion Network Rust api"
 repository = "https://github.com/ObvilionNetwork/rust-api.git"
