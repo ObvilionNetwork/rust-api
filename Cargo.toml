@@ -11,3 +11,4 @@ readme = "readme.md"
 include = ["src/**/*.rs", "readme.md", "Cargo.toml", "Cargo.lock"]
 
 [dependencies]
+rocket = "0.5.0-rc.1"
