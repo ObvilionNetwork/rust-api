@@ -13,21 +13,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Cache deps
-        uses: actions/cache@v2
+
+      - name: Install latest stable
+        uses: actions-rs/toolchain@v1
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-flow-${{ hashFiles('**/Cargo.lock') }}
+          toolchain: stable
+          override: true
+          components: clippy
+
+      - uses: Swatinem/rust-cache@v1
+
       - name: Install cargo-make
         uses: actions-rs/cargo@v1
         with:
           command: install
           args: --debug cargo-make
+
       - name: Run Flow
         uses: actions-rs/cargo@v1
         with:
