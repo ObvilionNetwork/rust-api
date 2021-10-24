@@ -1,0 +1,7 @@
+[debug]
+log_level = "normal"
+port = 3000
+address = "0.0.0.0"
+
+[release]
+log_level = "critical"
