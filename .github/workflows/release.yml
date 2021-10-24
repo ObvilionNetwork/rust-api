@@ -10,11 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Install latest stable
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          profile: minimal
+
       - name: Build
         uses: actions-rs/cargo@v1
         with:
           command: build
           args: --release -vv
+
       - name: Archive linux binary
         run: |
           tar czvf ./target/release/rust-api.tar.gz ./target/release/rust-api
