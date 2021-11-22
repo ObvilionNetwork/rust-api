@@ -10,5 +10,6 @@ license = "AGPL-3.0"
 readme = "readme.md"
 include = ["src/**/*.rs", "readme.md", "Cargo.toml", "Cargo.lock"]
 
-[dependencies]
-rocket = "0.5.0-rc.1"
+[dependencies.rocket]
+version = "0.5.0-rc.1"
+features = ["json"]
